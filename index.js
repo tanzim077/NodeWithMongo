@@ -20,8 +20,9 @@ MongoClient.connect(Url, Unf, function(error, MyMongoClient) {
         // FindOneWithOutCondition(MyMongoClient);
         // FindOneWithCondition(MyMongoClient);
         // FindAllWithCondition(MyMongoClient);
-        // FindAllWithProjection(MyMongoClient)
-        // FindManyWithCondition(MyMongoClient)
+        //  FindAllWithSingleProjection(MyMongoClient);
+        // FindManyWithCondition(MyMongoClient);
+        FindAllWithMultipleProjection(MyMongoClient);
     }
 });
 
@@ -184,11 +185,35 @@ function FindAllWithCondition(MyMongoClient) {
     })
 }
 
-function FindAllWithProjection(MyMongoClient) {
+function FindAllWithSingleProjection(MyMongoClient) {
     var MyDataBase = MyMongoClient.db("Demo");
     var MyCollection = MyDataBase.collection('employee');
     var MyData ={};
     var Projection = {projection: {city:""}};
+
+
+    MyCollection.find(MyData, Projection).toArray(function (error, result) {
+        if (error){
+            console.log("No Data Found");
+        }
+        else{
+            // var number = parseInt(ResultObj.result.n);
+            // if (number > 1){
+            //     console.log(ResultObj.result.n + " Items found")
+            // }
+            //  else {
+            //     console.log(ResultObj.result.n + " Item found")
+            // }
+            console.log(result);
+        }
+    })
+}
+
+function FindAllWithMultipleProjection(MyMongoClient) {
+    var MyDataBase = MyMongoClient.db("Demo");
+    var MyCollection = MyDataBase.collection('employee');
+    var MyData ={};
+    var Projection = {projection: {city:"", name:""}};
 
 
     MyCollection.find(MyData, Projection).toArray(function (error, result) {
