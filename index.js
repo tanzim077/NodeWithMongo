@@ -16,8 +16,12 @@ MongoClient.connect(Url, Unf, function(error, MyMongoClient) {
         //     InsertData(MyMongoClient);
         // }
         //DeleteData(MyMongoClient);
-        DeleteAllData(MyMongoClient);
-
+        // DeleteAllData(MyMongoClient);
+        // FindOneWithOutCondition(MyMongoClient);
+        // FindOneWithCondition(MyMongoClient);
+        // FindAllWithCondition(MyMongoClient);
+        // FindAllWithProjection(MyMongoClient)
+        // FindManyWithCondition(MyMongoClient)
     }
 });
 
@@ -50,12 +54,42 @@ function InsertData(MyMongoClient) {
     };
     var MyData4 = {
         name: "Robert Huarez",
-        gender: "male",
+        gender: "Male",
         city: "Bogota",
         phone_no: "0722224750"
     };
+    var MyData5 = {
+        name: "Arman Azam",
+        gender: "Male",
+        city: "Dhaka",
+        phone_no: "01822220350"
+    };
+    var MyData6 = {
+        name: "Nixon Ali",
+        gender: "Male",
+        city: "Bogota",
+        phone_no: "36549891"
+    };
+    var MyData7 = {
+        name: "Ashley Diana Alexis",
+        gender: "Female",
+        city: "Bogota",
+        phone_no: "2232230350"
+    };
+    var MyData8 = {
+        name: "Jeny Ansari",
+        gender: "Female",
+        city: "Dhaka",
+        phone_no: "9475220350"
+    };
+    var MyData9 = {
+        name: "Robert Mendes Huarez",
+        gender: "Male",
+        city: "New York",
+        phone_no: "0722224750"
+    };
 
-    MyCollection.insertMany([MyData, MyData1, MyData2, MyData3, MyData4], function (error) {
+    MyCollection.insertMany([MyData, MyData1, MyData2, MyData3, MyData4,MyData5,MyData6,MyData7,MyData8,MyData9], function (error) {
         if (error) {
             console.log("Data insertion Unsuccessfull");
         } else {
@@ -63,6 +97,7 @@ function InsertData(MyMongoClient) {
         }
     })
 }
+
 function DeleteData(MyMongoClient) {
     var MyDataBase = MyMongoClient.db("Demo");
     var MyCollection = MyDataBase.collection('employee');
@@ -89,5 +124,108 @@ function DeleteAllData(MyMongoClient) {
             console.log(ResultObj.result.n + " Item Data Deleted")
         }
     })
+}
 
+function FindOneWithOutCondition(MyMongoClient) {
+    var MyDataBase = MyMongoClient.db("Demo");
+    var MyCollection = MyDataBase.collection('employee');
+    var MyData ={}
+
+    MyCollection.findOne(MyData,  function (error, result){
+        if (error){
+            console.log("No Data Found");
+        }else{
+            console.log(result);
+        }
+    })
+}
+
+function FindOneWithCondition(MyMongoClient) {
+    var MyDataBase = MyMongoClient.db("Demo");
+    var MyCollection = MyDataBase.collection('employee');
+    var MyData ={city : "Bogota"};
+
+    MyCollection.findOne(MyData, function (error, result){
+        if (error){
+            console.log("No Data Found");
+        }
+        else{
+            // var number = parseInt(ResultObj.result.n);
+            // if (number > 1){
+            //     console.log(result.n + " Items found")
+            // }
+            //  else {
+            //     console.log(ResultObj.result.n + " Item found")
+            // }
+            console.log(result);
+        }
+    })
+}
+
+function FindAllWithCondition(MyMongoClient) {
+    var MyDataBase = MyMongoClient.db("Demo");
+    var MyCollection = MyDataBase.collection('employee');
+   //var MyData ={city : "Bogota"};
+
+    MyCollection.find().toArray(function (error, result) {
+        if (error){
+            console.log("No Data Found");
+        }
+        else{
+            // var number = parseInt(ResultObj.result.n);
+            // if (number > 1){
+            //     console.log(ResultObj.result.n + " Items found")
+            // }
+            //  else {
+            //     console.log(ResultObj.result.n + " Item found")
+            // }
+            console.log(result);
+        }
+    })
+}
+
+function FindAllWithProjection(MyMongoClient) {
+    var MyDataBase = MyMongoClient.db("Demo");
+    var MyCollection = MyDataBase.collection('employee');
+    var MyData ={};
+    var Projection = {projection: {city:""}};
+
+
+    MyCollection.find(MyData, Projection).toArray(function (error, result) {
+        if (error){
+            console.log("No Data Found");
+        }
+        else{
+            // var number = parseInt(ResultObj.result.n);
+            // if (number > 1){
+            //     console.log(ResultObj.result.n + " Items found")
+            // }
+            //  else {
+            //     console.log(ResultObj.result.n + " Item found")
+            // }
+            console.log(result);
+        }
+    })
+}
+
+function FindManyWithCondition(MyMongoClient) {
+    var MyDataBase = MyMongoClient.db("Demo");
+    var MyCollection = MyDataBase.collection('employee');
+    var MyData ={city : "Bogota"};
+
+    MyCollection.find(MyData).toArray(function (error, result) {
+        if (error){
+            console.log("No Data Found");
+        }
+        else{
+            // var number = parseInt(ResultObj.result.n);
+            // if (number > 1){
+            //     console.log(ResultObj.result.n + " Items found")
+            // }
+            //  else {
+            //     console.log(ResultObj.result.n + " Item found")
+            // }
+            console.log(result);
+        }
+    })
 }
