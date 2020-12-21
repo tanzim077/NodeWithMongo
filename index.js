@@ -9,8 +9,14 @@ MongoClient.connect(Url, Unf, function(error, MyMongoClient) {
 
     } else {
         console.log("Connection Successfull");
-        //InsertData(MyMongoClient);
-        DeleteData(MyMongoClient);
+        // var i;
+        // for ( i = 1; i<5; i++){
+        //     InsertData(MyMongoClient);
+        //     InsertData(MyMongoClient);
+        //     InsertData(MyMongoClient);
+        // }
+        //DeleteData(MyMongoClient);
+        DeleteAllData(MyMongoClient);
 
     }
 });
@@ -67,6 +73,20 @@ function DeleteData(MyMongoClient) {
             console.log("Data Delete Unsuccessfull");
         }else{
             console.log("Data Deleted Successfull")
+        }
+    })
+
+}
+
+function DeleteAllData(MyMongoClient) {
+    var MyDataBase = MyMongoClient.db("Demo");
+    var MyCollection = MyDataBase.collection('employee');
+
+    MyCollection.deleteMany(function (error, ResultObj){
+        if (error){
+            console.log("Data Delete Unsuccessfull");
+        }else{
+            console.log(ResultObj.result.n + " Item Data Deleted")
         }
     })
 
