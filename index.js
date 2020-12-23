@@ -21,11 +21,15 @@ MongoClient.connect(Url, Unf, function(error, MyMongoClient) {
         // FindOneWithCondition(MyMongoClient);
         // FindAllWithCondition(MyMongoClient);
         //  FindAllWithSingleProjection(MyMongoClient);
-        // FindManyWithCondition(MyMongoClient);
-        FindAllWithMultipleProjection(MyMongoClient);
+        //FindAllWithMultipleProjection(MyMongoClient);
+        //FindManyWithCondition(MyMongoClient);
+        //FindWithLimit(MyMongoClient);
+        // FindWithSorting(MyMongoClient)
+        UpdateData(MyMongoClient)
     }
 });
 
+//Insert Data
 function InsertData(MyMongoClient) {
     var MyDataBase = MyMongoClient.db("Demo");
     var MyCollection = MyDataBase.collection('employee');
@@ -99,6 +103,7 @@ function InsertData(MyMongoClient) {
     })
 }
 
+//Delete Single Data
 function DeleteData(MyMongoClient) {
     var MyDataBase = MyMongoClient.db("Demo");
     var MyCollection = MyDataBase.collection('employee');
@@ -114,6 +119,7 @@ function DeleteData(MyMongoClient) {
 
 }
 
+//Delete All Data
 function DeleteAllData(MyMongoClient) {
     var MyDataBase = MyMongoClient.db("Demo");
     var MyCollection = MyDataBase.collection('employee');
@@ -127,6 +133,7 @@ function DeleteAllData(MyMongoClient) {
     })
 }
 
+//Find Single First Data
 function FindOneWithOutCondition(MyMongoClient) {
     var MyDataBase = MyMongoClient.db("Demo");
     var MyCollection = MyDataBase.collection('employee');
@@ -141,6 +148,7 @@ function FindOneWithOutCondition(MyMongoClient) {
     })
 }
 
+//Find Single First Data When Condition is True
 function FindOneWithCondition(MyMongoClient) {
     var MyDataBase = MyMongoClient.db("Demo");
     var MyCollection = MyDataBase.collection('employee');
@@ -163,6 +171,7 @@ function FindOneWithCondition(MyMongoClient) {
     })
 }
 
+//Find All Data When Condition is True
 function FindAllWithCondition(MyMongoClient) {
     var MyDataBase = MyMongoClient.db("Demo");
     var MyCollection = MyDataBase.collection('employee');
@@ -185,6 +194,7 @@ function FindAllWithCondition(MyMongoClient) {
     })
 }
 
+//Find All Data With a Specific Single Column
 function FindAllWithSingleProjection(MyMongoClient) {
     var MyDataBase = MyMongoClient.db("Demo");
     var MyCollection = MyDataBase.collection('employee');
@@ -209,6 +219,7 @@ function FindAllWithSingleProjection(MyMongoClient) {
     })
 }
 
+//Find All Data With a Specific Column
 function FindAllWithMultipleProjection(MyMongoClient) {
     var MyDataBase = MyMongoClient.db("Demo");
     var MyCollection = MyDataBase.collection('employee');
@@ -233,6 +244,7 @@ function FindAllWithMultipleProjection(MyMongoClient) {
     })
 }
 
+//Find All Data With a Specific Multiple Column
 function FindManyWithCondition(MyMongoClient) {
     var MyDataBase = MyMongoClient.db("Demo");
     var MyCollection = MyDataBase.collection('employee');
@@ -250,6 +262,78 @@ function FindManyWithCondition(MyMongoClient) {
             //  else {
             //     console.log(ResultObj.result.n + " Item found")
             // }
+            console.log(result);
+        }
+    })
+}
+
+//Find Data in specific Limit
+function  FindWithLimit(MyMongoClient) {
+    var MyDataBase = MyMongoClient.db("Demo");
+    var MyCollection = MyDataBase.collection('employee');
+
+
+    MyCollection.find().limit(10).toArray(function (error, result) {
+        if (error){
+            console.log("No Data Found");
+        }
+        else{
+            // var number = parseInt(ResultObj.result.n);
+            // if (number > 1){
+            //     console.log(ResultObj.result.n + " Items found")
+            // }
+            //  else {
+            //     console.log(ResultObj.result.n + " Item found")
+            // }
+            console.log(result);
+        }
+    })
+}
+
+//Find Data in Sorting
+function  FindWithSorting(MyMongoClient) {
+    var MyDataBase = MyMongoClient.db("Demo");
+    var MyCollection = MyDataBase.collection('employee');
+    var sort ={city : -1} //1 for Ascending and -1 for Descending
+
+
+    MyCollection.find().sort(sort).toArray(function (error, result) {
+        if (error){
+            console.log("No Data Found");
+        }
+        else{
+            // var number = parseInt(ResultObj.result.n);
+            // if (number > 1){
+            //     console.log(ResultObj.result.n + " Items found")
+            // }
+            //  else {
+            //     console.log(ResultObj.result.n + " Item found")
+            // }
+            console.log(result);
+        }
+    })
+}
+
+//Update Data
+function  UpdateData(MyMongoClient) {
+    var MyDataBase = MyMongoClient.db("Demo");
+    var MyCollection = MyDataBase.collection('employee');
+    var Data ={city : "Bogota"} ; //1 for Ascending and -1 for Descending
+    var NewValue ={$set:{ country : "Colombia"}}; // Insert a new  column "Country" or can be modified existing column
+
+    MyCollection.updateOne(Data, NewValue, function (error, result) {
+        if (error){
+            console.log("No Data Found");
+        }
+        else{
+            // var number = parseInt(ResultObj.result.n);
+            // if (number > 1){
+            //     console.log(ResultObj.result.n + " Items found")
+            // }
+            //  else {
+            //     console.log(ResultObj.result.n + " Item found")
+            // }
+            //console.log(result);
             console.log(result);
         }
     })

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8951af8f-50f7-41bb-9da4-85d2f08c7fdf" name="Default Changelist" comment="Some Basic function Added">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="8951af8f-50f7-41bb-9da4-85d2f08c7fdf" name="Default Changelist" comment="Projection Added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
     </list>
@@ -47,7 +46,8 @@
       <option name="presentableId" value="Default" />
       <updated>1608547214994</updated>
       <workItem from="1608547216918" duration="339000" />
-      <workItem from="1608547818358" duration="14374000" />
+      <workItem from="1608547818358" duration="14825000" />
+      <workItem from="1608742959491" duration="4060000" />
     </task>
     <task id="LOCAL-00001" summary="Dwlete function Added">
       <created>1608560097300</created>
@@ -63,7 +63,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608572575816</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Projection Added">
+      <created>1608572981752</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1608572981752</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -72,6 +79,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Dwlete function Added" />
     <MESSAGE value="Some Basic function Added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Some Basic function Added" />
+    <MESSAGE value="Projection Added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Projection Added" />
   </component>
 </project>
